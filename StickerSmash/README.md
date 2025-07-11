@@ -8,6 +8,8 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 
    ```bash
    npm install
+   #i added because these were done later in the tut
+   npx expo install react-native-view-shot expo-media-library
    ```
 
 2. Start the app
