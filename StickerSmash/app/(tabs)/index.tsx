@@ -1,4 +1,4 @@
-import { ImageSourcePropType, View, StyleSheet } from 'react-native';
+import { ImageSourcePropType, View, StyleSheet, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { useState, useRef } from 'react';
 
@@ -9,6 +9,7 @@ import IconButton from '@/components/IconButton';
 import CircleButton from '@/components/CircleButton';
 import EmojiPicker from '@/components/EmojiPicker';
 import EmojiList from '@/components/EmojiList';
+import domtoimage from 'dom-to-image';
 
 import EmojiSticker from '@/components/EmojiSticker';
 
@@ -64,6 +65,7 @@ export default function Index() {
   };
 
   const onSaveImageAsync = async () => {
+  if (Platform.OS !== 'web') {
   try {
     const localUri = await captureRef(imageRef, {
       height: 440,
@@ -77,6 +79,24 @@ export default function Index() {
   } catch (e) {
     console.log(e);
   }
+}
+else{
+    try {
+    const dataUrl = await domtoimage.toJpeg(imageRef.current, {
+      quality: 0.95,
+      width: 320,
+      height: 440,
+    });
+
+    let link = document.createElement('a');
+    link.download = 'sticker-smash.jpeg';
+    link.href = dataUrl;
+    link.click();
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 };
 
   return (

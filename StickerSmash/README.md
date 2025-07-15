@@ -10,6 +10,7 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    npm install
    #i added because these were done later in the tut
    npx expo install react-native-view-shot expo-media-library
+   npm install dom-to-image
    ```
 
 2. Start the app
